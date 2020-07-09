@@ -4,33 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:local="clr-namespace:ProyectoSIG.ViewModels"
              x:Class="ProyectoSIG.Views.MapView"
-             Title="Mapa"
-             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
-    <StackLayout>
-        <maps:Map x:Name="mapa">
-            <maps:Map.MapElements>
-                <maps:Circle StrokeColor="#88FF0000"
-                           StrokeWidth="8"
-                           FillColor="#88FFC0CB">
-                    <maps:Circle.Center>
-                        <maps:Position>
-                            <x:Arguments>
-                                <x:Double>13.681170</x:Double>
-                                <x:Double>-89.285328</x:Double>
-                            </x:Arguments>
-                        </maps:Position>
-                    </maps:Circle.Center>
-                    <maps:Circle.Radius>
-                        <maps:Distance>
-                            <x:Arguments>
-                                <x:Double>250</x:Double>
-                            </x:Arguments>
-                        </maps:Distance>
-                    </maps:Circle.Radius>
-                </maps:Circle>
-            </maps:Map.MapElements>
-        </maps:Map>
-    </StackLayout>
-
+             Title="Mapa">
+    <ContentPage.BindingContext>
+        <local:MapViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <maps:Map x:Name="mapa" ItemsSource="{Binding MapElements}"/>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

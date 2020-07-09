@@ -40,7 +40,7 @@ namespace ProyectoSIG.Client
             try
             {
                 HttpResponseMessage response = await Client.PostAsync(url, content);
-                if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     res.Succesful = true;
                 }
@@ -49,7 +49,7 @@ namespace ProyectoSIG.Client
                     res.Succesful = false;
                     res.Mensaje = await response.Content.ReadAsStringAsync();
                 }
-                return res;                
+                return res;
             }
             catch (Exception e)
             {
