@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIG.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace ProyectoSIG
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new MasterView();
         }
 
         protected override void OnStart()
