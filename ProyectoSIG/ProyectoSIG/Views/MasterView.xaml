@@ -6,6 +6,9 @@
              mc:Ignorable="d"
              x:Class="ProyectoSIG.Views.MasterView"
             xmlns:pages="clr-namespace:ProyectoSIG.Views">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem Text="Cerrar Sesion" Priority="0" Order="Secondary" Clicked="CerrarSesion_Clicked"/>
+    </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
         <pages:MenuView x:Name="MasterPage" />
     </MasterDetailPage.Master>

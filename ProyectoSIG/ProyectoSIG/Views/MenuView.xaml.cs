@@ -22,21 +22,22 @@ namespace ProyectoSIG.Views
 
             menuItems = new List<HomeMenuItem>(new[]
                 {
-                    new HomeMenuItem { Id = ViewPages.MapView, Title = "Ver Mapa", Imagen = "agregartran" },
-                    new HomeMenuItem { Id = ViewPages.AboutView, Title = "Acerca de Nosotros", Imagen="detalles.png" }
+                    new HomeMenuItem { Id = ViewPages.MapView, Title = "Ver Mapa", Imagen = "map.png" },
+                    new HomeMenuItem { Id = ViewPages.PerfilView, Title = "Perfil", Imagen = "userprofile.png" },
+                    new HomeMenuItem { Id = ViewPages.AboutView, Title = "Acerca de Nosotros", Imagen="about.png" }
 
                 });
 
             MenuItemsListView.ItemsSource = menuItems;
 
-            MenuItemsListView.SelectedItem = menuItems[0];
+            //MenuItemsListView.SelectedItem = menuItems[0];
 
-            MenuItemsListView.ItemSelected += async (sender, e) =>
+            MenuItemsListView.ItemTapped += async (sender, e) =>
             {
-                if (e.SelectedItem == null)
+                if (e.Item == null)
                     return;
 
-                var id = (int)((HomeMenuItem)e.SelectedItem).Id;
+                var id = (int)((HomeMenuItem)e.Item).Id;
                 await RootPage.NavigateFromMenu(id);
             };
         }

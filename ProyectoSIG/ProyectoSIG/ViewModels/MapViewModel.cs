@@ -1,10 +1,14 @@
-﻿using ProyectoSIG.Services;
+﻿using ProyectoSIG.PopUps;
+using ProyectoSIG.Services;
 using ProyectoSIG.ViewModels.Base;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace ProyectoSIG.ViewModels
@@ -25,8 +29,19 @@ namespace ProyectoSIG.ViewModels
             }
         }
 
+        ICommand _showInfo;
+        public ICommand ShowInfo
+        {
+            get { return _showInfo; }
+        }
+
         public MapViewModel()
         {
+            _showInfo = new Command(async() => {
+
+                await PopupNavigation.Instance.PushAsync(new InformationView(),true);
+            
+            });
         }
 
         public async Task SetMapCircles(IList<MapElement> mapElements)

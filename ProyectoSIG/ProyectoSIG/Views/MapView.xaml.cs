@@ -18,8 +18,6 @@ namespace ProyectoSIG.Views
         public MapView()
         {
             InitializeComponent();
-            
-            
 
             mapa.MoveToRegion(new MapSpan(new Position(13.681170, -89.285328), 0.01,0.01));
 

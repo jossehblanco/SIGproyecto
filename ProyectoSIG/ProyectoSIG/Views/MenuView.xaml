@@ -13,6 +13,7 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
                 <ListView.Header>
+                    <Frame HasShadow="True" Padding="0" Margin="0,0,0,1">
                     <Grid BackgroundColor="#80deea">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="10"/>
@@ -21,22 +22,25 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
-                            <RowDefinition Height="80"/>
+                            <RowDefinition Height="60"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="10"/>
                         </Grid.RowDefinitions>
-                        <Label Grid.Column="1" Grid.Row="2" Text="Covid Amigos" TextColor="#4bacb8" Style="{DynamicResource SubtitleStyle}"/>
-                    </Grid>
+                            <Label Grid.Column="1" Grid.Row="2" Text="Covid Amigos" TextColor="Black" FontSize="18"/>
+                        </Grid>
+                    </Frame>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
-                                <Image Source="{Binding Imagen}" WidthRequest="50" HeightRequest="50"/>
-                                <Label VerticalOptions="FillAndExpand" Margin="10,0,0,0"
+                                <!--<Frame BorderColor="Black" Margin="0" Padding="0" BackgroundColor="Transparent" CornerRadius="16">-->
+                                <Image Source="{Binding Imagen}" Margin="5,0,0,0" WidthRequest="32" HeightRequest="32" Aspect="AspectFit"/>
+                                <!--</Frame>-->
+                                <Label VerticalOptions="FillAndExpand" Margin="20,0,0,0"
                                     VerticalTextAlignment="Center" 
                                     Text="{Binding Title}" 
-                                    FontSize="14" TextColor="Black"/>
+                                    FontSize="16" TextColor="Black"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

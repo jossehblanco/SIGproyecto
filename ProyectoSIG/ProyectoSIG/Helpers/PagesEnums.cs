@@ -7,6 +7,7 @@ namespace ProyectoSIG.Helpers
     public enum ViewPages
     {
         MapView,
+        PerfilView,
         AboutView
     }
 }

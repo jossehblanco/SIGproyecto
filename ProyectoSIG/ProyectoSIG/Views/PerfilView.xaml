@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ProyectoSIG.Views.PerfilView"
+             BackgroundColor="White"
+             Title="Mi Perfil">
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Image  AbsoluteLayout.LayoutBounds="0.5,0.2,100,100" AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Aspect="AspectFit" Source="userfoto.png"/>
+            <Label AbsoluteLayout.LayoutBounds="0,0.45,1,0.08" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Center"
+                   Text="Rodrigo Alejandro" TextColor="Black" FontSize="Large"/>
+            <Label AbsoluteLayout.LayoutBounds="0,0.52,1,0.08" AbsoluteLayout.LayoutFlags="All" HorizontalTextAlignment="Center"
+                   Text="Rovelo Santamaria" TextColor="Black" FontSize="Large"/>
+
+            <Label Text="¿Tienes sintomas de COVID-19?" TextColor="DarkGray" FontSize="Medium" HorizontalTextAlignment="Center"
+                   AbsoluteLayout.LayoutBounds="0,0.8,1,0.08" AbsoluteLayout.LayoutFlags="All"/>
+            <StackLayout AbsoluteLayout.LayoutBounds="0.6,0.85,0.4,0.04" AbsoluteLayout.LayoutFlags="All"
+                         Orientation="Horizontal" Spacing="2">
+                <Label Text="Si" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                <CheckBox Color="#80deea" CheckedChanged="Si_CheckedChanged"/>
+                <Label Text="No" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                <CheckBox Color="#80deea" CheckedChanged="No_CheckedChanged"/>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

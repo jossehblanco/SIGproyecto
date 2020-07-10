@@ -20,7 +20,7 @@ namespace ProyectoSIG.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            Detail = new NavigationPage(new MapView());
+            Detail = new NavigationPage(new MapView()) { BarTextColor = Color.Black };
 
             MenuPages.Add((int)ViewPages.MapView, (NavigationPage)Detail);
         }
@@ -32,10 +32,13 @@ namespace ProyectoSIG.Views
                 switch (id)
                 {
                     case (int)ViewPages.MapView:
-                        MenuPages.Add(id, new NavigationPage(new MapView()));
+                        MenuPages.Add(id, new NavigationPage(new MapView()) { BarTextColor = Color.Black });
+                        break;
+                    case (int)ViewPages.PerfilView:
+                        MenuPages.Add(id, new NavigationPage(new PerfilView()) { BarTextColor = Color.Black });
                         break;
                     case (int)ViewPages.AboutView:
-                        MenuPages.Add(id, new NavigationPage(new AboutView()));
+                        MenuPages.Add(id, new NavigationPage(new AboutView()) { BarTextColor = Color.Black });
                         break;
                 }
             }
@@ -51,6 +54,12 @@ namespace ProyectoSIG.Views
 
                 IsPresented = false;
             }
+        }
+
+        private void CerrarSesion_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.Properties["Logged"] = false;
+            Application.Current.MainPage = new Page();
         }
     }
 }

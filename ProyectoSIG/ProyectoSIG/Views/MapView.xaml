@@ -7,13 +7,23 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              xmlns:local="clr-namespace:ProyectoSIG.ViewModels"
              x:Class="ProyectoSIG.Views.MapView"
+             BackgroundColor="White"
              Title="Mapa">
     <ContentPage.BindingContext>
         <local:MapViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <maps:Map x:Name="mapa" ItemsSource="{Binding MapElements}"/>
-        </StackLayout>
+        <AbsoluteLayout >
+            <maps:Map AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Margin="15" x:Name="mapa" ItemsSource="{Binding MapElements}"/>
+            <ImageButton AbsoluteLayout.LayoutBounds="0.05,0.92,60,60" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="15"
+                         HeightRequest="60" BackgroundColor="#884bacb8" WidthRequest="60"
+                         CornerRadius="30" Command="{Binding ShowInfo}"
+                         Source="detablack.png"/>
+            <!--<BoxView Color="#88005b9f" AbsoluteLayout.LayoutBounds="1,1,1,0.05" AbsoluteLayout.LayoutFlags="All">
+                <BoxView.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Up" Command="{Binding ShowInfo}" CommandParameter="Up" />
+                </BoxView.GestureRecognizers>
+            </BoxView>-->
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

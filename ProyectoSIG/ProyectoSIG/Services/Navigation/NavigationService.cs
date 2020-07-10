@@ -80,7 +80,7 @@ namespace ProyectoSIG.Services.Navigation
             if (navigationPage != null)
             {
                 if (IsModal)
-                    await navigationPage.Navigation.PushModalAsync(page);
+                    await navigationPage.Navigation.PushModalAsync(page,true);
                 else
                     await navigationPage.PushAsync(page);   
             }

@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android;
+using Rg.Plugins.Popup.Services;
 
 namespace ProyectoSIG.Droid
 {
@@ -27,6 +28,7 @@ namespace ProyectoSIG.Droid
 
             base.OnCreate(savedInstanceState);
 
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
@@ -54,6 +56,14 @@ namespace ProyectoSIG.Droid
                     // Permissions already granted - display a message.
                 }
             }
+        }
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                PopupNavigation.Instance.PopAsync();
+            }        
         }
     }
 }
