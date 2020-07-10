@@ -1,4 +1,5 @@
-﻿using ProyectoSIG.PopUps;
+﻿using ProyectoSIG.Models;
+using ProyectoSIG.PopUps;
 using ProyectoSIG.Services;
 using ProyectoSIG.ViewModels.Base;
 using Rg.Plugins.Popup.Services;
@@ -46,7 +47,14 @@ namespace ProyectoSIG.ViewModels
 
         public async Task SetMapCircles(IList<MapElement> mapElements)
         {
-            MapElements = await RiskCircleService.GetRiskCircles("circles");
+            ObjetoRespuesta<MapElement> objetoRespuesta = await RiskCircleService.GetRiskCircles("circles");
+            if(!objetoRespuesta.Succesful)
+            {
+                await DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok", null);
+                return;
+            }
+
+            MapElements = objetoRespuesta.ObjetosRecuperados;
             foreach(MapElement mapita in MapElements)
             {
                 mapElements.Add(mapita);

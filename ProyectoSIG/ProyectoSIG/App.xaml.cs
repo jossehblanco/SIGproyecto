@@ -11,7 +11,22 @@ namespace ProyectoSIG
         {
             InitializeComponent();
 
-            MainPage = new MasterView();
+
+            if (Application.Current.Properties.ContainsKey("Logged"))
+            {
+                if ((bool)Application.Current.Properties["Logged"])
+                {
+                    MainPage = new MasterView();
+                }
+                else
+                {
+                    MainPage = new LoginView();
+                }
+            }
+            else
+            {
+                MainPage = new LoginView();
+            }
         }
 
         protected override void OnStart()

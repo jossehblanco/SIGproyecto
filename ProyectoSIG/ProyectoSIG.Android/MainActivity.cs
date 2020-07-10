@@ -8,6 +8,7 @@ using Android.Widget;
 using Android.OS;
 using Android;
 using Rg.Plugins.Popup.Services;
+using Xfx;
 
 namespace ProyectoSIG.Droid
 {
@@ -30,6 +31,7 @@ namespace ProyectoSIG.Droid
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            XfxControls.Init();
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App());

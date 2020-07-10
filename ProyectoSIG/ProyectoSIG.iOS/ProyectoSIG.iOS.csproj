@@ -134,6 +134,9 @@
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>4.7.0.1080</Version>
     </PackageReference>
+    <PackageReference Include="Xfx.Controls">
+      <Version>1.0.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

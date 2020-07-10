@@ -33,8 +33,8 @@ namespace ProyectoSIG.ViewModels.Base
             _container = new TinyIoCContainer();
 
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
-            //_container.Register<AddTransactionViewModel>();
-            //_container.Register<TransactionsViewModel>();
+            _container.Register<InformationViewModel>();
+            _container.Register<MapViewModel>();
             //_container.Register<AddArticuloViewModel>();
 
             // Services - by default, TinyIoC will register interface registrations as singletons.

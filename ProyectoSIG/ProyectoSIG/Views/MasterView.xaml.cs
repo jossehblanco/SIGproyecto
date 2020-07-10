@@ -59,7 +59,7 @@ namespace ProyectoSIG.Views
         private void CerrarSesion_Clicked(object sender, EventArgs e)
         {
             Application.Current.Properties["Logged"] = false;
-            Application.Current.MainPage = new Page();
+            Application.Current.MainPage = new LoginView();
         }
     }
 }

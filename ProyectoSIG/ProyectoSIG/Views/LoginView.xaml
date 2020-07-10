@@ -3,13 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              mc:Ignorable="d"
              x:Class="ProyectoSIG.Views.LoginView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Image  AbsoluteLayout.LayoutBounds="0.5,0.2,100,100" AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Aspect="AspectFit" Source="userfoto.png"/>
+            <xfx:XfxEntry x:Name="usuario" AbsoluteLayout.LayoutBounds="0.55,0.45,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
+                          Placeholder="Ingrese tu usuario" Completed="OnUsuario_Completed"/>
+            <xfx:XfxEntry x:Name="password" AbsoluteLayout.LayoutBounds="0.55,0.55,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
+                   Placeholder="Ingresa tu contraseña" Completed="OnLogIn_Clicked" IsPassword="True"/>
+            <Label x:Name="error" AbsoluteLayout.LayoutBounds="0.52,0.65,0.5,0.05" AbsoluteLayout.LayoutFlags="All" Text="Usuario o contraseña invalidos"
+                   TextColor="IndianRed" IsVisible="False"/>
+
+            <Button Text="Iniciar sesión" AbsoluteLayout.LayoutBounds="0.5,0.75,0.6,0.07" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#7edeea" Clicked="OnLogIn_Clicked"/>
+            <Label Text="¿No tienes cuenta?" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center"
+                   AbsoluteLayout.LayoutBounds="0.3,0.85,0.5,0.08" AbsoluteLayout.LayoutFlags="All"/>
+            <Label AbsoluteLayout.LayoutBounds="0.7,0.85,0.2,0.08" AbsoluteLayout.LayoutFlags="All" 
+                   Text="Registrate" TextDecorations="Underline" TextColor="#0000EE">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRegistrarse_Clicked"/>
+                </Label.GestureRecognizers>
+                </Label>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>
