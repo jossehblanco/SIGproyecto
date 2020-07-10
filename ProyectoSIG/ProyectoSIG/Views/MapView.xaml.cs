@@ -23,6 +23,17 @@ namespace ProyectoSIG.Views
 
             Task.Run(async () => {
                 await (BindingContext as MapViewModel).SetMapCircles(mapa.MapElements);
+                Position pos = await (BindingContext as MapViewModel).GetUserLocation();
+                if(pos.Latitude != 0 && pos.Longitude != 0)
+                {
+                    Pin pin = new Pin();
+                    pin.Position = pos;
+                    pin.Label = "Tu estas aquí";
+                    mapa.Pins.Add(pin);
+                    Device.BeginInvokeOnMainThread(() => {
+                        mapa.MoveToRegion(new MapSpan(pos, 0.05,0.05));
+                    });
+                }
             });
 
         }

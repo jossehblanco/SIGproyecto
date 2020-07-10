@@ -11,7 +11,7 @@ namespace ProyectoSIG.Client
 {
     public static class RestClient
     {
-        public static HttpClient Client { get; set; } = new HttpClient() { BaseAddress = new Uri("http://sigdb.herokuapp.com/") };
+        public static HttpClient Client { get; set; } = new HttpClient() { BaseAddress = new Uri("https://sigdb.herokuapp.com/") };
         public static async Task<ObjetoRespuesta<T>> Get<T>(string url, string token)
         {
             ObjetoRespuesta<T> respuesta = new ObjetoRespuesta<T>();

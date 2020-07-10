@@ -8,8 +8,10 @@
              x:Class="ProyectoSIG.Views.LoginView">
     <ContentPage.Content>
         <AbsoluteLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Image  AbsoluteLayout.LayoutBounds="0.5,0.2,100,100" AbsoluteLayout.LayoutFlags="PositionProportional"
-                    Aspect="AspectFit" Source="userfoto.png"/>
+            <Image  AbsoluteLayout.LayoutBounds="0.5,0.2,150,150" AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Aspect="AspectFit" Source="dangerzonelogo.png"/>
+            <Label AbsoluteLayout.LayoutBounds="0,0.4,1,0.05" AbsoluteLayout.LayoutFlags="All" Text="Bienvenido a tu zona segura"
+                   TextColor="Black" FontSize="14"/>
             <xfx:XfxEntry x:Name="usuario" AbsoluteLayout.LayoutBounds="0.55,0.45,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
                           Placeholder="Ingrese tu usuario" Completed="OnUsuario_Completed"/>
             <xfx:XfxEntry x:Name="password" AbsoluteLayout.LayoutBounds="0.55,0.55,0.8,0.08" AbsoluteLayout.LayoutFlags="All"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIG.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await Application.Current.MainPage.DisplayAlert(
+            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 message,
                 buttonText);
@@ -30,7 +31,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await Application.Current.MainPage.DisplayAlert(
+            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 error.Message,
                 buttonText);
@@ -41,11 +42,19 @@ namespace ProyectoSIG.Services.Dialog
             }
         }
 
+        public void ShowError(string message, string title, string buttonText)
+        {
+            (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+                title,
+                message,
+                buttonText);
+        }
+
         public async Task ShowMessage(
             string message,
             string title)
         {
-            await Application.Current.MainPage.DisplayAlert(
+            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 message,
                 "OK");
@@ -57,7 +66,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await Application.Current.MainPage.DisplayAlert(
+            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 message,
                 buttonText);
@@ -75,7 +84,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
-            var result = await Application.Current.MainPage.DisplayAlert(
+            var result = await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 message,
                 buttonConfirmText,
@@ -92,7 +101,7 @@ namespace ProyectoSIG.Services.Dialog
             string message,
             string title)
         {
-            await Application.Current.MainPage.DisplayAlert(
+            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
                 title,
                 message,
                 "OK");

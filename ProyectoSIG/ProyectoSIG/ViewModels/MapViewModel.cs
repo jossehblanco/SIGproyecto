@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -39,9 +40,7 @@ namespace ProyectoSIG.ViewModels
         public MapViewModel()
         {
             _showInfo = new Command(async() => {
-
                 await PopupNavigation.Instance.PushAsync(new InformationView(),true);
-            
             });
         }
 
@@ -50,7 +49,10 @@ namespace ProyectoSIG.ViewModels
             ObjetoRespuesta<MapElement> objetoRespuesta = await RiskCircleService.GetRiskCircles("circles");
             if(!objetoRespuesta.Succesful)
             {
-                await DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok", null);
+                Device.BeginInvokeOnMainThread(() => {
+                    DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok");
+                });
+                //await DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok", null);
                 return;
             }
 
@@ -59,6 +61,30 @@ namespace ProyectoSIG.ViewModels
             {
                 mapElements.Add(mapita);
             }
+        }
+
+        public async Task<Position> GetUserLocation()
+        {
+            Position position = new Position(0,0);
+            try
+            {
+                var location = await Geolocation.GetLocationAsync();
+
+                if (location == null)
+                    location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location != null)
+                {
+                    position = new Position(location.Latitude, location.Longitude);
+                }
+            }
+            catch(Exception ex)
+            {
+                Device.BeginInvokeOnMainThread(() => {
+                    DialogService.ShowError(ex.Message, "Error", "Ok");
+                });
+            }
+            return position;
         }
     }
 }

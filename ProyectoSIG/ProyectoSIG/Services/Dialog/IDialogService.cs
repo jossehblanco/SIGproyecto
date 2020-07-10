@@ -13,5 +13,6 @@ namespace ProyectoSIG.Services.Dialog
         Task ShowMessage(string message, string title, string buttonText, Action afterHideCallback);
         Task<bool> ShowMessage(string message, string title, string buttonConfirmText, string buttonCancelText, Action<bool> afterHideCallback);
         Task ShowMessageBox(string message, string title);
+        void ShowError(string message, string title, string buttonText);
     }
 }

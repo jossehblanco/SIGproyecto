@@ -1,4 +1,6 @@
-﻿using ProyectoSIG.ViewModels.Base;
+﻿using ProyectoSIG.Models;
+using ProyectoSIG.ViewModels.Base;
+using ProyectoSIG.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -112,6 +114,11 @@ namespace ProyectoSIG.Services.Navigation
 
             Page page = Activator.CreateInstance(pageType) as Page;
             return page;
+        }
+
+        public void SingOut()
+        {
+            Application.Current.MainPage = new LoginView();
         }
     }
 }
