@@ -21,9 +21,9 @@
             <StackLayout AbsoluteLayout.LayoutBounds="0.6,0.85,0.4,0.04" AbsoluteLayout.LayoutFlags="All"
                          Orientation="Horizontal" Spacing="2">
                 <Label Text="Si" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center"/>
-                <CheckBox Color="#80deea" CheckedChanged="Si_CheckedChanged"/>
+                <CheckBox x:Name="SiCheck" Color="#80deea" CheckedChanged="Si_CheckedChanged"/>
                 <Label Text="No" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center"/>
-                <CheckBox Color="#80deea" CheckedChanged="No_CheckedChanged"/>
+                <CheckBox x:Name="NoCheck" Color="#80deea" CheckedChanged="No_CheckedChanged"/>
             </StackLayout>
         </AbsoluteLayout>
     </ContentPage.Content>

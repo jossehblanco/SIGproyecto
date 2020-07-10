@@ -5,29 +5,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:xfx="clr-namespace:Xfx;assembly=Xfx.Controls"
              mc:Ignorable="d"
+             xmlns:converters="clr-namespace:ProyectoSIG.Converters"
+             xmlns:local="clr-namespace:ProyectoSIG.ViewModels"
              x:Class="ProyectoSIG.Views.LoginView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DenyBoolConverter x:Key="denybool"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <AbsoluteLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <Image  AbsoluteLayout.LayoutBounds="0.5,0.2,150,150" AbsoluteLayout.LayoutFlags="PositionProportional"
+        <Grid>
+            <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsRunning="{Binding Syncing}" IsVisible="{Binding Syncing}"/>
+            <AbsoluteLayout IsVisible="{Binding Syncing, Converter={StaticResource denybool}}" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Image  AbsoluteLayout.LayoutBounds="0.5,0.15,150,150" AbsoluteLayout.LayoutFlags="PositionProportional"
                     Aspect="AspectFit" Source="dangerzonelogo.png"/>
-            <Label AbsoluteLayout.LayoutBounds="0,0.4,1,0.05" AbsoluteLayout.LayoutFlags="All" Text="Bienvenido a tu zona segura"
-                   TextColor="Black" FontSize="14"/>
-            <xfx:XfxEntry x:Name="usuario" AbsoluteLayout.LayoutBounds="0.55,0.45,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
+                <Label AbsoluteLayout.LayoutBounds="0,0.37,1,0.05" AbsoluteLayout.LayoutFlags="All" Text="Bienvenido a tu zona segura"
+                   TextColor="Black" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                <xfx:XfxEntry Text="{Binding Username, Mode=TwoWay}" x:Name="usuario"
+                          AbsoluteLayout.LayoutBounds="0.55,0.45,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
                           Placeholder="Ingrese tu usuario" Completed="OnUsuario_Completed"/>
-            <xfx:XfxEntry x:Name="password" AbsoluteLayout.LayoutBounds="0.55,0.55,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
-                   Placeholder="Ingresa tu contraseña" Completed="OnLogIn_Clicked" IsPassword="True"/>
-            <Label x:Name="error" AbsoluteLayout.LayoutBounds="0.52,0.65,0.5,0.05" AbsoluteLayout.LayoutFlags="All" Text="Usuario o contraseña invalidos"
-                   TextColor="IndianRed" IsVisible="False"/>
+                <xfx:XfxEntry Text="{Binding Password, Mode=TwoWay}" x:Name="password" AbsoluteLayout.LayoutBounds="0.55,0.55,0.8,0.08" AbsoluteLayout.LayoutFlags="All"
+                   Placeholder="Ingresa tu contraseña" ReturnCommand="{Binding Login}" IsPassword="True"/>
+                <Label x:Name="error" AbsoluteLayout.LayoutBounds="0.52,0.65,0.5,0.05" AbsoluteLayout.LayoutFlags="All" Text="Usuario o contraseña invalidos"
+                   TextColor="IndianRed" IsVisible="{Binding Error}"/>
 
-            <Button Text="Iniciar sesión" AbsoluteLayout.LayoutBounds="0.5,0.75,0.6,0.07" AbsoluteLayout.LayoutFlags="All" BackgroundColor="#7edeea" Clicked="OnLogIn_Clicked"/>
-            <Label Text="¿No tienes cuenta?" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center"
+                <Button Text="Iniciar sesión" AbsoluteLayout.LayoutBounds="0.5,0.75,0.6,0.07" 
+                    AbsoluteLayout.LayoutFlags="All" BackgroundColor="#7edeea" Command="{Binding Login}"/>
+                <Label Text="¿No tienes cuenta?" TextColor="Black" FontSize="Small" HorizontalTextAlignment="Center"
                    AbsoluteLayout.LayoutBounds="0.3,0.85,0.5,0.08" AbsoluteLayout.LayoutFlags="All"/>
-            <Label AbsoluteLayout.LayoutBounds="0.7,0.85,0.2,0.08" AbsoluteLayout.LayoutFlags="All" 
+                <Label AbsoluteLayout.LayoutBounds="0.7,0.85,0.2,0.08" AbsoluteLayout.LayoutFlags="All" 
                    Text="Registrate" TextDecorations="Underline" TextColor="#0000EE">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnRegistrarse_Clicked"/>
-                </Label.GestureRecognizers>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRegistrarse_Clicked"/>
+                    </Label.GestureRecognizers>
                 </Label>
-        </AbsoluteLayout>
+            </AbsoluteLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

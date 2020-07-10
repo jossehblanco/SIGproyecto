@@ -19,12 +19,14 @@ namespace ProyectoSIG.Views
 
         private void Si_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-
+            if (NoCheck.IsChecked)
+                NoCheck.IsChecked = !e.Value;
         }
 
         private void No_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-
+            if (SiCheck.IsChecked)
+                SiCheck.IsChecked = !e.Value;
         }
     }
 }

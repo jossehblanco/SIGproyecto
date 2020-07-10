@@ -22,7 +22,9 @@ namespace ProyectoSIG.Views
             mapa.MoveToRegion(new MapSpan(new Position(13.681170, -89.285328), 0.01,0.01));
 
             Task.Run(async () => {
-                await (BindingContext as MapViewModel).SetMapCircles(mapa.MapElements);
+                bool logout = await (BindingContext as MapViewModel).SetMapCircles(mapa.MapElements);
+                if (logout)
+                    return;
                 Position pos = await (BindingContext as MapViewModel).GetUserLocation();
                 if(pos.Latitude != 0 && pos.Longitude != 0)
                 {

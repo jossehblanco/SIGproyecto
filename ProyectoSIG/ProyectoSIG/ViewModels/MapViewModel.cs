@@ -6,6 +6,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -40,20 +41,22 @@ namespace ProyectoSIG.ViewModels
         public MapViewModel()
         {
             _showInfo = new Command(async() => {
-                await PopupNavigation.Instance.PushAsync(new InformationView(),true);
+                if (PopupNavigation.Instance.PopupStack.Count == 0 || PopupNavigation.Instance.PopupStack.Last().GetType() != typeof(InformationView))
+                    await PopupNavigation.Instance.PushAsync(new InformationView(),true);
             });
         }
 
-        public async Task SetMapCircles(IList<MapElement> mapElements)
+        public async Task<bool> SetMapCircles(IList<MapElement> mapElements)
         {
             ObjetoRespuesta<MapElement> objetoRespuesta = await RiskCircleService.GetRiskCircles("circles");
             if(!objetoRespuesta.Succesful)
             {
-                Device.BeginInvokeOnMainThread(() => {
-                    DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok");
-                });
+                //Device.BeginInvokeOnMainThread(() => {
+                //    DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok");
+                //});
+                NavigationService.SignOut();
                 //await DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok", null);
-                return;
+                return true;
             }
 
             MapElements = objetoRespuesta.ObjetosRecuperados;
@@ -61,6 +64,7 @@ namespace ProyectoSIG.ViewModels
             {
                 mapElements.Add(mapita);
             }
+            return false;
         }
 
         public async Task<Position> GetUserLocation()

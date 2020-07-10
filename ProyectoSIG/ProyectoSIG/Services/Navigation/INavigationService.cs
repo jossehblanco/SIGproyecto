@@ -16,7 +16,11 @@ namespace ProyectoSIG.Services.Navigation
 
         Task NavigateToModalAsync<TViewModel>() where TViewModel : BaseViewModel;
 
-        void SingOut();
+        void SignOut();
+
+        void SignIn(int UserId, string Token);
+
+        Task GoBack(Type tipo,bool IsModal);
 
         Task RemoveLastFromBackStackAsync();
 

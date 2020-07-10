@@ -14,7 +14,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            await Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 buttonText);
@@ -31,7 +31,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            await Application.Current.MainPage.DisplayAlert(
                 title,
                 error.Message,
                 buttonText);
@@ -44,7 +44,7 @@ namespace ProyectoSIG.Services.Dialog
 
         public void ShowError(string message, string title, string buttonText)
         {
-            (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 buttonText);
@@ -54,7 +54,7 @@ namespace ProyectoSIG.Services.Dialog
             string message,
             string title)
         {
-            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            await Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 "OK");
@@ -66,7 +66,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonText,
             Action afterHideCallback)
         {
-            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            await Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 buttonText);
@@ -84,7 +84,7 @@ namespace ProyectoSIG.Services.Dialog
             string buttonCancelText,
             Action<bool> afterHideCallback)
         {
-            var result = await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            var result = await Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 buttonConfirmText,
@@ -101,7 +101,7 @@ namespace ProyectoSIG.Services.Dialog
             string message,
             string title)
         {
-            await (Application.Current.MainPage as MasterView).Detail.DisplayAlert(
+            await Application.Current.MainPage.DisplayAlert(
                 title,
                 message,
                 "OK");

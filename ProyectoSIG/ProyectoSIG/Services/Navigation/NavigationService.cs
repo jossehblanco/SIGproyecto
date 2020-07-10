@@ -1,9 +1,11 @@
-﻿using ProyectoSIG.Models;
+﻿using ProyectoSIG.Helpers;
+using ProyectoSIG.Models;
 using ProyectoSIG.ViewModels.Base;
 using ProyectoSIG.Views;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -116,9 +118,30 @@ namespace ProyectoSIG.Services.Navigation
             return page;
         }
 
-        public void SingOut()
+        public void SignOut()
         {
+            Application.Current.Properties[Constants.Userid] = null;
+            Application.Current.Properties[Constants.Token] = null;
+            Application.Current.Properties[Constants.Logged] = false;
             Application.Current.MainPage = new LoginView();
+        }
+
+        public void SignIn(int UserId, string Token)
+        {
+            Application.Current.Properties[Constants.Userid] = UserId;
+            Application.Current.Properties[Constants.Token] = Token;
+            Application.Current.Properties[Constants.Logged] = true;
+            Application.Current.MainPage = new MasterView();
+        }
+
+        public async Task GoBack(Type tipo, bool IsModal)
+        {
+            if (IsModal)
+                if(Application.Current.MainPage.Navigation.ModalStack.Count != 0 && Application.Current.MainPage.Navigation.ModalStack.Last().GetType() == tipo)
+                    await Application.Current.MainPage.Navigation.PopModalAsync(true);
+            else
+                if (Application.Current.MainPage.Navigation.NavigationStack.Count != 0 && Application.Current.MainPage.Navigation.NavigationStack.Last().GetType() == tipo)
+                    await Application.Current.MainPage.Navigation.PopAsync();
         }
     }
 }

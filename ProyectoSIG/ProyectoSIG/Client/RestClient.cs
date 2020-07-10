@@ -74,6 +74,32 @@ namespace ProyectoSIG.Client
             }
         }
 
+        public static async Task<ObjetoRespuesta<T>> Post<T>(T dato, string url)
+        {
+            var jsonString = JsonConvert.SerializeObject(dato);
+            StringContent content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            ObjetoRespuesta<T> res = new ObjetoRespuesta<T>();
+            try
+            {
+                HttpResponseMessage response = await Client.PostAsync(url, content);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    res.Succesful = true;
+                }
+                else
+                {
+                    res.Succesful = false;
+                    res.Mensaje = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception e)
+            {
+                res.Succesful = false;
+                res.Mensaje = e.Message;
+            }
+            return res;
+        }
+
         public static async Task<ObjetoRespuesta<Token>> PostForToken(string url)
         {
             var jsonString = JsonConvert.SerializeObject("foo");
