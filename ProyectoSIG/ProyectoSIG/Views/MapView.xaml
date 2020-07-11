@@ -9,6 +9,9 @@
              x:Class="ProyectoSIG.Views.MapView"
              BackgroundColor="White"
              Title="Mapa">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="locate.png" Command="{Binding Localizar}" Priority="0" Order="Primary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <local:MapViewModel/>
     </ContentPage.BindingContext>

@@ -101,6 +101,7 @@ namespace ProyectoSIG.ViewModels
                 Active = false;
                 Syncing = true;
                 await SendRegister();
+                Syncing = false;
                 Active = true;
             }, () => { return Active;  });
             
@@ -139,7 +140,6 @@ namespace ProyectoSIG.ViewModels
             {
                 await DialogService.ShowMessage(objetoRespuesta.Mensaje , "Error", "Ok", null);
             }
-            Syncing = false;
         }
     }
 }

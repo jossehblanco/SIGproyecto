@@ -18,6 +18,29 @@ namespace ProyectoSIG.ViewModels
 {
     public class MapViewModel : BaseViewModel
     {
+        private bool _active = true;
+        public bool Active
+        {
+            get { return _active; }
+            set
+            {
+                if(_active != value)
+                {
+                    _active = value;
+                    ((Command)_localizar).ChangeCanExecute();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        ICommand _localizar;
+        public ICommand Localizar
+        {
+            get { return _localizar; }
+        }
+
+        public Xamarin.Forms.Maps.Map Map { get; set; }
+
         private List<MapElement> mapElements;
         public List<MapElement> MapElements
         {
@@ -44,6 +67,15 @@ namespace ProyectoSIG.ViewModels
                 if (PopupNavigation.Instance.PopupStack.Count == 0 || PopupNavigation.Instance.PopupStack.Last().GetType() != typeof(InformationView))
                     await PopupNavigation.Instance.PushAsync(new InformationView(),true);
             });
+
+            _localizar = new Command(async () =>
+            {
+                Active = false;
+
+                await GetUserLocation();
+
+                Active = true;
+            }, () => { return Active; });
         }
 
         public async Task<bool> SetMapCircles(IList<MapElement> mapElements)
@@ -54,7 +86,10 @@ namespace ProyectoSIG.ViewModels
                 //Device.BeginInvokeOnMainThread(() => {
                 //    DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok");
                 //});
-                NavigationService.SignOut();
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    NavigationService.SignOut();
+                });
                 //await DialogService.ShowError(objetoRespuesta.Mensaje, "Error", "Ok", null);
                 return true;
             }
@@ -81,11 +116,23 @@ namespace ProyectoSIG.ViewModels
                 {
                     position = new Position(location.Latitude, location.Longitude);
                 }
+
+                if (position.Latitude != 0 && position.Longitude != 0)
+                {
+                    Pin pin = new Pin();
+                    pin.Position = position;
+                    pin.Label = "Tu estas aquí";
+                    Map.Pins.Add(pin);
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        Map.MoveToRegion(new MapSpan(position, 0.05, 0.05));
+                    });
+                }
             }
             catch(Exception ex)
             {
                 Device.BeginInvokeOnMainThread(() => {
-                    DialogService.ShowError(ex.Message, "Error", "Ok");
+                    DialogService.ShowError("Por favor brindar permisos de GPS o encender el GPS.", "Error", "Ok");
                 });
             }
             return position;
